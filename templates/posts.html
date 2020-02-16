@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>Posts</title>
+{% endblock%}
+
+{% block body %}
+	<a class="btn btn-success float-right" href="/posts/new_post">+ New Post</a>
+	<h2>All Posts</h2>
+	<hr>
+	 
+	{% for post in posts %}
+		<br>
+		<h3>{{ post.title }}</h3>
+		<p style="white-space: pre-wrap" >{{ post.content }}</p>
+		{% if post.author %}
+			<small> By: {{post.author}} on {{post.date_posted}}</small>
+		{%else%}
+			<small> By: Unknown on {{post.date_posted}}</small>
+		{% endif %}
+		<br>
+		<a class="btn btn-danger" href="/posts/delete/{{post.ids}}">Delete</a>
+		<a class="btn btn-primary " href="/posts/edit/{{post.ids}}">Edit</a>
+		<hr>
+
+	{% endfor %}
+
+
+{% endblock %}
+
+
+ 
